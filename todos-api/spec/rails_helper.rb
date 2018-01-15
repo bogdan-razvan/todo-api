@@ -69,7 +69,7 @@ Shoulda::Matchers.configure do |config|
 end
 
 # [...]
-RSpec.configuration do |config|
+RSpec.configure do |config|
   # [...]
   # add `FactoryGirl` methods
   config.include FactoryGirl::Syntax::Methods
@@ -86,5 +86,15 @@ RSpec.configuration do |config|
       example.run
     end
   end
+  # [...]
+end
+
+# spec/rails_helper.rb
+# [...]
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+# [...]
+RSpec.configure do |config|
+  # [...]
+  config.include RequestSpecHelper, type: :request
   # [...]
 end
